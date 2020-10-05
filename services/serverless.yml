@@ -47,12 +47,21 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  fg-fetch-feed:
-    handler: handler.hello
+  fetch-feed:
+    handler: feed/fetch_feed.lambda_handler
     events:
       - http:
-          path: website-auth/account/activate
-          method: post
+          path: feed
+          method: get
+          integration: lambda
+          cors: true
+
+  fetch-user-wall:
+    handler: feed/fetch_user_wall.lambda_handler
+    events:
+      - http: 
+          path: feed/{user}
+          method: get
           integration: lambda
           cors: true
 
