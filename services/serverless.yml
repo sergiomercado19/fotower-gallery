@@ -65,6 +65,42 @@ functions:
           integration: lambda
           cors: true
 
+  upload-picture:
+    handler: pictures/upload_picture.lambda_handler
+    events:
+      - http: 
+          path: pictures
+          method: post
+          integration: lambda
+          cors: true
+
+  remove-picture:
+    handler: pictures/remove_picture.lambda_handler
+    events:
+      - http: 
+          path: pictures/{id}
+          method: delete
+          integration: lambda
+          cors: true
+
+  fetch-picture:
+    handler: pictures/fetch_picture.lambda_handler
+    events:
+      - http: 
+          path: pictures/{id}
+          method: get
+          integration: lambda
+          cors: true
+
+  modify-picture:
+    handler: pictures/modify_picture.lambda_handler
+    events:
+      - http: 
+          path: pictures/{id}
+          method: put
+          integration: lambda
+          cors: true
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
