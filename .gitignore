@@ -1,3 +1,5 @@
+.vscode
+
 # Distribution / packaging
 .Python
 env/
