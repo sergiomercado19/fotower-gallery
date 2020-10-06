@@ -101,6 +101,42 @@ functions:
           integration: lambda
           cors: true
 
+  create-user:
+    handler: users/create_user.lambda_handler
+    events:
+      - http: 
+          path: users
+          method: post
+          integration: lambda
+          cors: true
+
+  delete-user:
+    handler: users/delete_user.lambda_handler
+    events:
+      - http: 
+          path: users/{id}
+          method: delete
+          integration: lambda
+          cors: true
+
+  fetch-user:
+    handler: users/fetch_user.lambda_handler
+    events:
+      - http: 
+          path: users/{id}
+          method: get
+          integration: lambda
+          cors: true
+
+  update-user:
+    handler: users/update_user.lambda_handler
+    events:
+      - http: 
+          path: users/{id}
+          method: put
+          integration: lambda
+          cors: true
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
