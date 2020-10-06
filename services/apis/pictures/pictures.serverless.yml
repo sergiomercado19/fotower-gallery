@@ -1,0 +1,35 @@
+upload-picture:
+  handler: upload_picture.lambda_handler
+  events:
+    - http: 
+        path: pictures
+        method: post
+        integration: lambda
+        cors: true
+
+remove-picture:
+  handler: remove_picture.lambda_handler
+  events:
+    - http: 
+        path: pictures/{id}
+        method: delete
+        integration: lambda
+        cors: true
+
+fetch-picture:
+  handler: fetch_picture.lambda_handler
+  events:
+    - http: 
+        path: pictures/{id}
+        method: get
+        integration: lambda
+        cors: true
+
+modify-picture:
+  handler: modify_picture.lambda_handler
+  events:
+    - http: 
+        path: pictures/{id}
+        method: put
+        integration: lambda
+        cors: true

@@ -1,0 +1,17 @@
+fetch-feed:
+  handler: fetch_feed.lambda_handler
+  events:
+    - http:
+        path: feed
+        method: get
+        integration: lambda
+        cors: true
+
+fetch-user-wall:
+  handler: fetch_user_wall.lambda_handler
+  events:
+    - http: 
+        path: feed/{user}
+        method: get
+        integration: lambda
+        cors: true

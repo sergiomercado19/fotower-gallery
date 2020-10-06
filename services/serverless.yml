@@ -47,95 +47,9 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  fetch-feed:
-    handler: feed/fetch_feed.lambda_handler
-    events:
-      - http:
-          path: feed
-          method: get
-          integration: lambda
-          cors: true
-
-  fetch-user-wall:
-    handler: feed/fetch_user_wall.lambda_handler
-    events:
-      - http: 
-          path: feed/{user}
-          method: get
-          integration: lambda
-          cors: true
-
-  upload-picture:
-    handler: pictures/upload_picture.lambda_handler
-    events:
-      - http: 
-          path: pictures
-          method: post
-          integration: lambda
-          cors: true
-
-  remove-picture:
-    handler: pictures/remove_picture.lambda_handler
-    events:
-      - http: 
-          path: pictures/{id}
-          method: delete
-          integration: lambda
-          cors: true
-
-  fetch-picture:
-    handler: pictures/fetch_picture.lambda_handler
-    events:
-      - http: 
-          path: pictures/{id}
-          method: get
-          integration: lambda
-          cors: true
-
-  modify-picture:
-    handler: pictures/modify_picture.lambda_handler
-    events:
-      - http: 
-          path: pictures/{id}
-          method: put
-          integration: lambda
-          cors: true
-
-  create-user:
-    handler: users/create_user.lambda_handler
-    events:
-      - http: 
-          path: users
-          method: post
-          integration: lambda
-          cors: true
-
-  delete-user:
-    handler: users/delete_user.lambda_handler
-    events:
-      - http: 
-          path: users/{id}
-          method: delete
-          integration: lambda
-          cors: true
-
-  fetch-user:
-    handler: users/fetch_user.lambda_handler
-    events:
-      - http: 
-          path: users/{id}
-          method: get
-          integration: lambda
-          cors: true
-
-  update-user:
-    handler: users/update_user.lambda_handler
-    events:
-      - http: 
-          path: users/{id}
-          method: put
-          integration: lambda
-          cors: true
+  - '${file(apis/feed/feed.serverless.yml)}'
+  - '${file(apis/pictures/pictures.serverless.yml)}'
+  - '${file(apis/users/users.serverless.yml)}'
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
