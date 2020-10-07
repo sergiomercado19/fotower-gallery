@@ -11,7 +11,6 @@ fetch-feed:
     - http:
         path: feed
         method: get
-        integration: lambda
         cors: true
 
 fetch-user-wall:
@@ -27,5 +26,4 @@ fetch-user-wall:
     - http: 
         path: feed/{user}
         method: get
-        integration: lambda
         cors: true

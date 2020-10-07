@@ -11,7 +11,6 @@ create-user:
     - http: 
         path: users
         method: post
-        integration: lambda
         cors: true
 
 delete-user:
@@ -27,7 +26,6 @@ delete-user:
     - http: 
         path: users/{id}
         method: delete
-        integration: lambda
         cors: true
 
 fetch-user:
@@ -43,7 +41,6 @@ fetch-user:
     - http: 
         path: users/{id}
         method: get
-        integration: lambda
         cors: true
 
 update-user:
@@ -59,5 +56,4 @@ update-user:
     - http: 
         path: users/{id}
         method: put
-        integration: lambda
         cors: true
