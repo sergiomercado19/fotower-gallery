@@ -4,8 +4,9 @@ import json
 def lambda_handler(event, context):
     # Request processing
     pictureId = event['pathParameters']['id']
+    description = event['body']['description']
+    location = event['body']['location']
 
-    
     # Response formatting
     body = {
         "message": "Picture with ID '{}' was modified".format(pictureId)

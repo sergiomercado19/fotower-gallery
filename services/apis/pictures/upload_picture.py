@@ -2,6 +2,10 @@ import json
 
 
 def lambda_handler(event, context):
+    # Request processing
+    description = event['body']['description']
+    location = event['body']['location']
+    image = event['body']['image']
 
     # Response formatting
     body = {
