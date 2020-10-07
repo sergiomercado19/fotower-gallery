@@ -1,5 +1,12 @@
 create-user:
-  handler: create_user.lambda_handler
+  name: fg-create-user
+  description: Create a new user.
+  handler: apis/users/create_user.lambda_handler
+  package:
+    exclude:
+      - apis/**
+    include:
+      - apis/users/create_user.py
   events:
     - http: 
         path: users
@@ -8,7 +15,14 @@ create-user:
         cors: true
 
 delete-user:
-  handler: delete_user.lambda_handler
+  name: fg-delete-user
+  description: Remove a user, this operation is destructive.
+  handler: apis/users/delete_user.lambda_handler
+  package:
+    exclude:
+      - apis/**
+    include:
+      - apis/users/delete_user.py
   events:
     - http: 
         path: users/{id}
@@ -17,7 +31,14 @@ delete-user:
         cors: true
 
 fetch-user:
-  handler: fetch_user.lambda_handler
+  name: fg-fetch-user
+  description: Fetch user information.
+  handler: apis/users/fetch_user.lambda_handler
+  package:
+    exclude:
+      - apis/**
+    include:
+      - apis/users/fetch_user.py
   events:
     - http: 
         path: users/{id}
@@ -26,7 +47,14 @@ fetch-user:
         cors: true
 
 update-user:
-  handler: update_user.lambda_handler
+  name: fg-update-user
+  description: Update a given user's information.
+  handler: apis/users/update_user.lambda_handler
+  package:
+    exclude:
+      - apis/**
+    include:
+      - apis/users/update_user.py
   events:
     - http: 
         path: users/{id}

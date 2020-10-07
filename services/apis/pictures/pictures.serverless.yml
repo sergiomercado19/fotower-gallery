@@ -1,5 +1,12 @@
 upload-picture:
-  handler: upload_picture.lambda_handler
+  name: fg-upload-picture
+  description: Upload a picture to a user's wall.
+  handler: apis/pictures/upload_picture.lambda_handler
+  package:
+    exclude:
+      - apis/**
+    include:
+      - apis/pictures/upload_picture.py
   events:
     - http: 
         path: pictures
@@ -8,7 +15,14 @@ upload-picture:
         cors: true
 
 remove-picture:
-  handler: remove_picture.lambda_handler
+  name: fg-remove-picture
+  description: Remove a picture from a user's wall.
+  handler: apis/pictures/remove_picture.lambda_handler
+  package:
+    exclude:
+      - apis/**
+    include:
+      - apis/pictures/remove_picture.py
   events:
     - http: 
         path: pictures/{id}
@@ -17,7 +31,14 @@ remove-picture:
         cors: true
 
 fetch-picture:
-  handler: fetch_picture.lambda_handler
+  name: fg-fetch-picture
+  description: Get an individual picture, specified by its ID.
+  handler: apis/pictures/fetch_picture.lambda_handler
+  package:
+    exclude:
+      - apis/**
+    include:
+      - apis/pictures/fetch_picture.py
   events:
     - http: 
         path: pictures/{id}
@@ -26,7 +47,14 @@ fetch-picture:
         cors: true
 
 modify-picture:
-  handler: modify_picture.lambda_handler
+  name: fg-modify-picture
+  description: Edit an uploaded picture.
+  handler: apis/pictures/modify_picture.lambda_handler
+  package:
+    exclude:
+      - apis/**
+    include:
+      - apis/pictures/modify_picture.py
   events:
     - http: 
         path: pictures/{id}

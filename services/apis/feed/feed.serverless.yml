@@ -1,5 +1,12 @@
 fetch-feed:
-  handler: fetch_feed.lambda_handler
+  name: fg-fetch-feed
+  description: Fetches public feed containing most recent posts.
+  handler: apis/feed/fetch_feed.lambda_handler
+  package:
+    exclude:
+      - apis/**
+    include:
+      - apis/feed/fetch_feed.py
   events:
     - http:
         path: feed
@@ -8,7 +15,14 @@ fetch-feed:
         cors: true
 
 fetch-user-wall:
-  handler: fetch_user_wall.lambda_handler
+  name: fg-fetch-user-wall
+  description: Fetches a given user's posts.
+  handler: apis/feed/fetch_user_wall.lambda_handler
+  package:
+    exclude:
+      - apis/**
+    include:
+      - apis/feed/fetch_user_wall.py
   events:
     - http: 
         path: feed/{user}

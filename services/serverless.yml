@@ -11,6 +11,9 @@ provider:
   name: aws
   runtime: python3.7
 
+  stackName: fotower-gallery
+  apiName: fotower-gallery
+
   stage: dev
   region: ap-southeast-2
 
@@ -37,14 +40,9 @@ provider:
 #  environment:
 #    variable1: value1
 
-# you can add packaging information here
-#package:
-#  include:
-#    - include-me.py
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.py
-#    - exclude-me-dir/**
+# Each function includes the files it needs.
+package:
+  individually: true
 
 functions:
   - '${file(apis/feed/feed.serverless.yml)}'
