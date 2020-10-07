@@ -2,9 +2,16 @@ import json
 
 
 def lambda_handler(event, context):
-    # Use this code if you don't use the http event with the LAMBDA-PROXY
-    # integration
-    return {
-        "message": "User with ID '{}' was deleted".format(event.get('userId')),
-        "event": event
+    # Request processing
+    username = event['pathParameters']['username']
+    
+    # Response formatting
+    body = {
+        "message": "User with ID '{}' was deleted".format(username)
     }
+    response = {
+        "statusCode": 200,
+        "body": json.dumps(body)
+    }
+
+    return response

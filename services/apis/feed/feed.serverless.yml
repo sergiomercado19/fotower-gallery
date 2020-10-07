@@ -24,6 +24,6 @@ fetch-user-wall:
       - apis/feed/fetch_user_wall.py
   events:
     - http: 
-        path: feed/{user}
+        path: feed/{username}
         method: get
         cors: true

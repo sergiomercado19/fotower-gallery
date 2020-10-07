@@ -2,9 +2,17 @@ import json
 
 
 def lambda_handler(event, context):
-    # Use this code if you don't use the http event with the LAMBDA-PROXY
-    # integration
-    return {
-        "message": "Create user {} ({})".format(event.get('username'), event.get('email')),
-        "event": event
+    # Request processing
+    username = event['body']['username']
+    email = event['body']['email']
+    
+    # Response formatting
+    body = {
+        "message": "Create user {} ({})".format(username, email)
     }
+    response = {
+        "statusCode": 201,
+        "body": json.dumps(body)
+    }
+
+    return response

@@ -2,9 +2,14 @@ import json
 
 
 def lambda_handler(event, context):
-    # Use this code if you don't use the http event with the LAMBDA-PROXY
-    # integration
-    return {
-        "message": "Picture uploaded",
-        "event": event
+
+    # Response formatting
+    body = {
+        "message": "Picture uploaded"
     }
+    response = {
+        "statusCode": 201,
+        "body": json.dumps(body)
+    }
+
+    return response

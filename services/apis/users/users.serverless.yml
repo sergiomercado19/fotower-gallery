@@ -24,7 +24,7 @@ delete-user:
       - apis/users/delete_user.py
   events:
     - http: 
-        path: users/{id}
+        path: users/{username}
         method: delete
         cors: true
 
@@ -39,7 +39,7 @@ fetch-user:
       - apis/users/fetch_user.py
   events:
     - http: 
-        path: users/{id}
+        path: users/{username}
         method: get
         cors: true
 
@@ -54,6 +54,6 @@ update-user:
       - apis/users/update_user.py
   events:
     - http: 
-        path: users/{id}
+        path: users/{username}
         method: put
         cors: true
