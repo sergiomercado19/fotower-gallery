@@ -2,36 +2,79 @@
 
 Fotower Gallery is a place where users can store and organise images.
 
-This project is part of a learning experience into AWS infrastructure. For now, the focus is to develop a serverless backend for this platform. 
+This project is part of a learning experience into [AWS infrastructure](https://aws.amazon.com/) and the [Serverless Framework](https://www.serverless.com/). For now, the focus is to develop and host the backend of this platform. 
 
-## Setting up AWS
+## Getting Started
 
 ### Prerequisites
 
-Follow the steps in the [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) to setup `aws cli`.
+Setup `aws cli` by following the steps in the [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html). Setup `serverless` by following the steps in the [Serverless documentation](https://www.serverless.com/framework/docs/getting-started/).
 
-Finally, verify the installation by executing the following command:
+Finally, verify both installations by executing the following commands:
 ```script
 aws --version
+serverless --version
 ```
 
 ### Configuration
 
-Configuring AWS CLI involves first creating a _user_ through the [Identity and Access Management (IAM)](https://console.aws.amazon.com/iam) with **Programmatic access**, which provides an _access key ID_ and a _secret access key_ for various development tools, including AWS CLI.
+Configuring AWS CLI involves first creating a *user* through the [Identity and Access Management (IAM)](https://console.aws.amazon.com/iam) with **Programmatic access**, which provides an *access key ID* and a *secret access key* for various development tools, including AWS CLI.
 
-Execute the following command on your terminal configure:
+> NOTE: The *secret access key* is only visible right after user creation, so make sure to save it.
+
+Execute the following command on your terminal configure and follow the prompts:
 ```script
 aws configure
 ```
 
-NOTE: The _secret access key_ is only visible right after user creation, so make sure to save it.
+This will create a folder named `.aws` in your *home directory* containing your configuration and credentials. Serverless uses these files when interacting with AWS.
 
-## AWS Stack
+## Backend-as-a-Service: AWS / Serverless
 
-The following Amazon web services will be used for the backend:
+AWS is a cloud platform consisting of a multitude of individual services targeting different usages (e.g. networking, compute, analytics, storage, etc.). Even though AWS has a user friendly console that allows users to access all these services, I will use the Serverless Framework to access all these services with in a *programmatic* way.
 
-* API Gateway
-* Lambda
-* DynamoDB
-* Cognito
-* S3
+The [`serverless.yml`](services/serverless.yml) file contains all the configuration related to the way the code is deployed to all the relevant services.
+
+> For reference, check out this [sample `serverless.yml` file](https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml/) containing all the possible settings that can be tweaked.
+
+Serverless takes care of creating API Gateway resources, and linking them to a corresponding **Lambda-proxy function**, defined under  `functions` in the `serverless.yml` file.
+
+### Tech Stack
+
+[Lambda](https://aws.amazon.com/lambda/) functions are at the core of our tech stack. The following Amazon web services will be directly used:
+
+* [API Gateway](https://aws.amazon.com/api-gateway/): through a **lambda-proxy** integration (recommended by Serverless) the request processing and response formatting is conducted by the lambda function. This gives us direct control over the REST API. For more information, checkout the [API Gateway integration documentation](https://www.serverless.com/framework/docs/providers/aws/events/apigateway/).
+* [DynamoDB](https://aws.amazon.com/dynamodb/)
+* [Cognito](https://aws.amazon.com/cognito/)
+* [S3](https://aws.amazon.com/s3/)
+
+### Folder Structure
+
+The serverless code resides in the **services/** directory of the repository. This folder contains the following important files:
+- [**serverless.yml**](services/serverless.yml) - This file is at the centre of a Serverless application. It contains all the configuration related to the way the code is deployed to all the relevant Amazon web services.
+- [**apis/**](services/apis) - Contains `.py` files defining API handlers in the form of Lambda functions.
+
+Looking in more depth at **apis/**:
+
+```
+apis
+├── [feed]
+│   ├── (feed.serverless.yml)
+│   ├── fetch_feed.py
+│   └── fetch_user_wall.py
+├── [pictures]
+│   ├── fetch_picture.py
+│   ├── modify_picture.py
+│   ├── (pictures.serverless.yml)
+│   ├── remove_picture.py
+│   └── upload_picture.py
+└── [users]
+    ├── create_user.py
+    ├── delete_user.py
+    ├── fetch_user.py
+    ├── update_user.py
+    └── (users.serverless.yml)
+```
+
+- The folders in square brackets represent the 3 major *API resources*, all other resources fall under one of these three.
+- The `*.serverless.yml` files in round brackets contain the serverless definitions of the functions in the same folder as them. These get imported to the main `serverless.yml` file. *NOTE: All the file paths in these files are relative to the  `serverless.yml` file*
