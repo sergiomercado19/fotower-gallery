@@ -4,6 +4,14 @@ Fotower Gallery is a place where users can store and organise images.
 
 This project is part of a learning experience into [AWS infrastructure](https://aws.amazon.com/) and the [Serverless Framework](https://www.serverless.com/). For now, the focus is to develop and host the backend of this platform. 
 
+## Contents
+
+- [Getting Started](#getting-started)
+- [Backend-as-a-Service: AWS/Serverless](#backend-as-a-service-aws-/-serverless)
+- [Deployment](#deployment)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
 ## Getting Started
 
 ### Prerequisites
@@ -28,6 +36,18 @@ aws configure
 ```
 
 This will create a folder named `.aws` in your *home directory* containing your configuration and credentials. Serverless uses these files when interacting with AWS.
+
+### Template
+
+A template project can be created by simply executing the following command on the folder you want to set as the root of your serverless application:
+
+```script
+serverless
+```
+
+> NOTE: The `serverless` and `sls` commands can be used interchangably.
+
+A dialog will appear asking you if you want to create a new project; enter `Y` and follow the prompts.
 
 ## Backend-as-a-Service: AWS / Serverless
 
@@ -78,3 +98,22 @@ apis
 
 - The folders in square brackets represent the 3 major *API resources*, all other resources fall under one of these three.
 - The `*.serverless.yml` files in round brackets contain the serverless definitions of the functions in the same folder as them. These get imported to the main `serverless.yml` file. *NOTE: All the file paths in these files are relative to the  `serverless.yml` file*
+
+## Deployment
+
+Once `aws` has been configured, you can deploy your serverless application using the following command:
+
+```script
+sls deploy
+```
+
+> NOTE: The `serverless` and `sls` commands can be used interchangably.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## Acknowledgments
+
+- Thanks to [Alex DeBrie](https://www.serverless.com/author/alexdebrie) for a quick guide on how to [Build a Python REST API with Serverless, Lambda, and DynamoDB](https://www.serverless.com/blog/flask-python-rest-api-serverless-lambda-dynamodb).
+- Thanks to [Serverless Stack](https://serverless-stack.com/) for a guide on how to [organize serverless projects](https://serverless-stack.com/chapters/organizing-serverless-projects.html).
