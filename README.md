@@ -39,6 +39,8 @@ This will create a folder named `.aws` in your *home directory* containing your 
 
 ### Template
 
+*NOTE: This section is not required to deploy this project, however, it's just here for completeness.*
+
 A template project can be created by simply executing the following command on the folder you want to set as the root of your serverless application:
 
 ```script
