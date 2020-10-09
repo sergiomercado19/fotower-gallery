@@ -19,6 +19,8 @@ provider:
 
 # Each function includes the files it needs
 package:
+  exclude:
+    - apis/**
   individually: true
 
 # Link to 3 files containing endpoint-specific functions

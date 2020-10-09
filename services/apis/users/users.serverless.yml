@@ -3,8 +3,6 @@ create-user:
   description: Create a new user.
   handler: apis/users/create_user.lambda_handler
   package:
-    exclude:
-      - apis/**
     include:
       - apis/users/create_user.py
   events:
@@ -18,8 +16,6 @@ delete-user:
   description: Remove a user, this operation is destructive.
   handler: apis/users/delete_user.lambda_handler
   package:
-    exclude:
-      - apis/**
     include:
       - apis/users/delete_user.py
   events:
@@ -33,8 +29,6 @@ fetch-user:
   description: Fetch user information.
   handler: apis/users/fetch_user.lambda_handler
   package:
-    exclude:
-      - apis/**
     include:
       - apis/users/fetch_user.py
   events:
@@ -48,8 +42,6 @@ update-user:
   description: Update a given user's information.
   handler: apis/users/update_user.lambda_handler
   package:
-    exclude:
-      - apis/**
     include:
       - apis/users/update_user.py
   events:

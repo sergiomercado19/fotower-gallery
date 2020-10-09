@@ -3,8 +3,6 @@ upload-picture:
   description: Upload a picture to a user's wall.
   handler: apis/pictures/upload_picture.lambda_handler
   package:
-    exclude:
-      - apis/**
     include:
       - apis/pictures/upload_picture.py
   events:
@@ -18,8 +16,6 @@ remove-picture:
   description: Remove a picture from a user's wall.
   handler: apis/pictures/remove_picture.lambda_handler
   package:
-    exclude:
-      - apis/**
     include:
       - apis/pictures/remove_picture.py
   events:
@@ -33,8 +29,6 @@ fetch-picture:
   description: Get an individual picture, specified by its ID.
   handler: apis/pictures/fetch_picture.lambda_handler
   package:
-    exclude:
-      - apis/**
     include:
       - apis/pictures/fetch_picture.py
   events:
@@ -48,8 +42,6 @@ modify-picture:
   description: Edit an uploaded picture.
   handler: apis/pictures/modify_picture.lambda_handler
   package:
-    exclude:
-      - apis/**
     include:
       - apis/pictures/modify_picture.py
   events:
