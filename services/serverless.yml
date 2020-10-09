@@ -21,6 +21,8 @@ provider:
 package:
   exclude:
     - apis/**
+    - venv/**
+    - requirements.txt
   individually: true
 
 # Link to 3 files containing endpoint-specific functions

@@ -18,10 +18,14 @@ This project is part of a learning experience into [AWS infrastructure](https://
 
 Setup `aws cli` by following the steps in the [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html). Setup `serverless` by following the steps in the [Serverless documentation](https://www.serverless.com/framework/docs/getting-started/).
 
-Finally, verify both installations by executing the following commands:
+Ensure that **Python3.7** is installed. This can be obtained from the [official Python website](https://www.python.org/downloads/).
+
+Finally, verify all required installations by executing the following commands:
+
 ```script
 aws --version
 serverless --version
+python3.7 --version
 ```
 
 ### Configuration
@@ -36,6 +40,19 @@ aws configure
 ```
 
 This will create a folder named `.aws` in your *home directory* containing your configuration and credentials. Serverless uses these files when interacting with AWS.
+
+### Python Virtual Environment
+
+This step is not required to deploy the serverless application, but it provides virtual development environment where `boto3` (and any other Python package) can be installed without affecting your global installation. To do this, navigate to `services/` and execute the following commands:
+
+```script
+pip3.7 install virtualenv
+python3.7 -m virtualenv -p python3.7 venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+> *Remember to exit the virtual environment by executing the command: `deactivate`.*
 
 ### Template
 
