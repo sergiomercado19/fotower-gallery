@@ -7,8 +7,8 @@ def lambda_handler(event, context):
     email = event['body']['email']
     password = event['body']['password']
     password_confirmation = event['body']['password_confirmation']
-    first_name = event['body']['first_name']
-    last_name = event['body']['last_name']
+    name = event['body']['name']
+    bio = event['body']['bio']
     
     # Response formatting
     body = {
