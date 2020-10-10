@@ -78,12 +78,14 @@ The [`serverless.yml`](services/serverless.yml) file contains all the configurat
 
 Serverless takes care of creating API Gateway resources, and linking them to a corresponding **Lambda-proxy function**, defined under  `functions` in the `serverless.yml` file.
 
+[**Boto3**](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) is the AWS SDK for Python and it provides with low-level access to various AWS services.
+
 ### Tech Stack
 
 [Lambda](https://aws.amazon.com/lambda/) functions are at the core of our tech stack. The following Amazon web services will be directly used:
 
 * [API Gateway](https://aws.amazon.com/api-gateway/): through a **lambda-proxy** integration (recommended by Serverless) the request processing and response formatting is conducted by the lambda function. This gives us direct control over the REST API. For more information, checkout the [API Gateway integration documentation](https://www.serverless.com/framework/docs/providers/aws/events/apigateway/).
-* [DynamoDB](https://aws.amazon.com/dynamodb/)
+* [DynamoDB](https://aws.amazon.com/dynamodb/): is being used to store picture metadata, as well as user information. The table configuration is done as a *service* in the `serverless.yml` file.
 * [Cognito](https://aws.amazon.com/cognito/)
 * [S3](https://aws.amazon.com/s3/)
 
