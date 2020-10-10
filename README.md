@@ -47,8 +47,8 @@ This step is not required to deploy the serverless application, but it provides 
 
 ```script
 pip3.7 install virtualenv
-python3.7 -m virtualenv -p python3.7 venv
-source venv/bin/activate
+python3.7 -m virtualenv -p python3.7 env
+source env/bin/activate
 pip install -r requirements.txt
 ```
 
