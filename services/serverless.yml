@@ -33,7 +33,7 @@ provider:
 package:
   exclude:
     - apis/**
-    - venv/**
+    - env/**
     - requirements.txt
   individually: true
 
