@@ -15,40 +15,36 @@ pictures_table = dynamodb.Table('fg-pictures-table')
 
 def lambda_handler(event, context):
     # Request parsing
-    request = json.loads(event['body'])
+    payload = json.loads(event['body'])
 
     # Package data
     new_pic = {
         'picId': str(uuid.uuid4()),
-        'description': request['description'],
-        'location': request['location'],
-        'image': request['image']
+        'description': payload['description'],
+        'location': payload['location'],
+        'image': payload['image']
     }
 
     # Response formatting
     status_code = 200
-    body = {
-        'message': ''
-    }
+    body = {}
 
-    # Insert picture data
-    response = ''
+    # Create db item
     try:
-        logger.info('Inserting newly uploaded picture')
-        response = response = pictures_table.put_item(Item=new_pic)
+        logger.info('Creating newly uploaded picture')
+        response = pictures_table.put_item(Item=new_pic)
 
         if response['ResponseMetadata']['HTTPStatusCode'] != 200:
+            logger.warn(response['Error']['Message'])
             status_code = response['ResponseMetadata']['HTTPStatusCode']
-            body['message'] = response['Error']['Message']
-            logger.warn(body['message'])
+            body['errors'] = [ response['Error']['Message'] ]
         else:
-            body['message'] = 'Picture [{}] inserted'.format(new_pic['picId'])
-            logger.info(body['message'])
+            logger.info('Created newly uploaded picture [{}]'.format(new_pic['picId']))
 
     except ClientError as e:
+        logger.warn(e.response['Error']['Message'])
         status_code = e.response['ResponseMetadata']['HTTPStatusCode']
-        body['message'] = e.response['Error']['Message']
-        logger.warn(body['message'])
+        body['errors'] = [ e.response['Error']['Message'] ]
 
     # TODO: Link picture to user's account
 
