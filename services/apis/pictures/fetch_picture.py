@@ -26,9 +26,9 @@ def lambda_handler(event, context):
         response = pictures_table.get_item(Key={'picId': pic_id})
 
         if response['ResponseMetadata']['HTTPStatusCode'] != 200:
+            logger.warn(response['Error']['Message'])
             status_code = response['ResponseMetadata']['HTTPStatusCode']
-            body['message'] = response['Error']['Message']
-            logger.warn(body['message'])
+            body['errors'] = [ response['Error']['Message'] ]
         else:
             logger.info('Read picture ({})'.format(pic_id))
             body = response['Item']
