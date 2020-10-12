@@ -54,10 +54,10 @@ resources:
       Properties:
         TableName: fg-users-table
         AttributeDefinitions:
-          - AttributeName: userId
+          - AttributeName: username
             AttributeType: S
         KeySchema:
-          - AttributeName: userId
+          - AttributeName: username
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
