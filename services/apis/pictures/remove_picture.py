@@ -14,7 +14,7 @@ pictures_table = dynamodb.Table('fg-pictures-table')
 
 def lambda_handler(event, context):
     # Request parsing
-    picId = event['pathParameters']['id']
+    pic_id = event['pathParameters']['id']
     
     # Response formatting
     status_code = 204
@@ -22,15 +22,15 @@ def lambda_handler(event, context):
 
     # Delete db item
     try:
-        logger.info('Deleting picture ({})'.format(picId))
-        response = pictures_table.delete_item(Key={'picId': picId})
+        logger.info('Deleting picture ({})'.format(pic_id))
+        response = pictures_table.delete_item(Key={'picId': pic_id})
 
         if response['ResponseMetadata']['HTTPStatusCode'] != 200:
             status_code = response['ResponseMetadata']['HTTPStatusCode']
             body['message'] = response['Error']['Message']
             logger.warn(body['message'])
         else:
-            logger.info('Deleted picture ({})'.format(picId))
+            logger.info('Deleted picture ({})'.format(pic_id))
 
     except ClientError as e:
         logger.warn(e.response['Error']['Message'])

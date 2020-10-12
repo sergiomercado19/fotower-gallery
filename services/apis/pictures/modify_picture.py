@@ -17,7 +17,7 @@ def lambda_handler(event, context):
     payload = json.loads(event['body'])
 
     # Request processing
-    picId = event['pathParameters']['id']
+    pic_id = event['pathParameters']['id']
     description = payload['description']
     location = payload['location']
 
@@ -27,10 +27,10 @@ def lambda_handler(event, context):
 
     # Update db item
     try:
-        logger.info('Updating picture ({})'.format(picId))
+        logger.info('Updating picture ({})'.format(pic_id))
         response = pictures_table.update_item(
             Key={
-                'picId': picId
+                'picId': pic_id
             },
             UpdateExpression="set description=:d, location=:l",
             ExpressionAttributeValues={
@@ -45,7 +45,7 @@ def lambda_handler(event, context):
             status_code = response['ResponseMetadata']['HTTPStatusCode']
             body['errors'] = [ response['Error']['Message'] ]
         else:
-            logger.info('Updated picture ({})'.format(picId))
+            logger.info('Updated picture ({})'.format(pic_id))
 
     except ClientError as e:
         logger.warn(e.response['Error']['Message'])
