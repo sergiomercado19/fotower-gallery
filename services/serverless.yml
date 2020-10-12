@@ -70,13 +70,9 @@ resources:
         AttributeDefinitions:
           - AttributeName: picId
             AttributeType: S
-          - AttributeName: modifiedDate
-            AttributeType: S
         KeySchema:
           - AttributeName: picId
             KeyType: HASH
-          - AttributeName: modifiedDate
-            KeyType: RANGE
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1

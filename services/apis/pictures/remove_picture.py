@@ -37,6 +37,8 @@ def lambda_handler(event, context):
         status_code = e.response['ResponseMetadata']['HTTPStatusCode']
         body['errors'] = [ e.response['Error']['Message'] ]
 
+    # TODO: Remove picture from user's account
+
     return {
         'statusCode': status_code,
         'body': json.dumps(body)

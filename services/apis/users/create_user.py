@@ -22,7 +22,8 @@ def lambda_handler(event, context):
         'username': payload['username'],
         'email': payload['email'],
         'name': payload['name'],
-        'bio': payload['bio']
+        'bio': payload['bio'],
+        'pictures': []
     }
 
     # Response formatting
