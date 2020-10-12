@@ -1,4 +1,5 @@
 import json
+import time
 import uuid
 import boto3
 import logging
@@ -20,6 +21,7 @@ def lambda_handler(event, context):
     # Package data
     new_pic = {
         'picId': str(uuid.uuid4()),
+        'modifiedDate': str(time.time()),
         'description': payload['description'],
         'location': payload['location'],
         'image': payload['image']

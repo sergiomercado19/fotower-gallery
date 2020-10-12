@@ -1,4 +1,5 @@
 import json
+import time
 import boto3
 import logging
 from botocore.exceptions import ClientError
@@ -32,8 +33,9 @@ def lambda_handler(event, context):
             Key={
                 'picId': pic_id
             },
-            UpdateExpression="set description=:d, location=:l",
+            UpdateExpression="set modifiedDate=:md, description=:d, location=:l",
             ExpressionAttributeValues={
+                ':md': str(time.time()),
                 ':d': description,
                 ':l': location
             },
