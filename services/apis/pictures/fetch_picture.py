@@ -22,7 +22,7 @@ def lambda_handler(event, context):
 
     # Read db item
     try:
-        logger.info('Reading requested picture')
+        logger.info('Reading picture ({})'.format(picId))
         response = pictures_table.get_item(Key={'picId': picId})
 
         if response['ResponseMetadata']['HTTPStatusCode'] != 200:
@@ -30,7 +30,7 @@ def lambda_handler(event, context):
             body['message'] = response['Error']['Message']
             logger.warn(body['message'])
         else:
-            logger.info('Read requested picture')
+            logger.info('Read picture ({})'.format(picId))
             body = response['Item']
 
     except ClientError as e:
@@ -38,7 +38,6 @@ def lambda_handler(event, context):
         status_code = e.response['ResponseMetadata']['HTTPStatusCode']
         body['errors'] = [ e.response['Error']['Message'] ]
 
-    
     return {
         'statusCode': status_code,
         'body': json.dumps(body)

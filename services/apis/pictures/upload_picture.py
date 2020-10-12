@@ -26,12 +26,12 @@ def lambda_handler(event, context):
     }
 
     # Response formatting
-    status_code = 200
+    status_code = 201
     body = {}
 
     # Create db item
     try:
-        logger.info('Creating newly uploaded picture')
+        logger.info('Creating picture ({})'.format(new_pic['picId']))
         response = pictures_table.put_item(Item=new_pic)
 
         if response['ResponseMetadata']['HTTPStatusCode'] != 200:
@@ -39,7 +39,7 @@ def lambda_handler(event, context):
             status_code = response['ResponseMetadata']['HTTPStatusCode']
             body['errors'] = [ response['Error']['Message'] ]
         else:
-            logger.info('Created newly uploaded picture [{}]'.format(new_pic['picId']))
+            logger.info('Created picture ({})'.format(new_pic['picId']))
 
     except ClientError as e:
         logger.warn(e.response['Error']['Message'])

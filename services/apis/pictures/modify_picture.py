@@ -27,7 +27,7 @@ def lambda_handler(event, context):
 
     # Update db item
     try:
-        logger.info('Updating specified picture')
+        logger.info('Updating picture ({})'.format(picId))
         response = pictures_table.update_item(
             Key={
                 'picId': picId
@@ -45,7 +45,7 @@ def lambda_handler(event, context):
             status_code = response['ResponseMetadata']['HTTPStatusCode']
             body['errors'] = [ response['Error']['Message'] ]
         else:
-            logger.info('Updated picture with ID [{}]'.format(picId))
+            logger.info('Updated picture ({})'.format(picId))
 
     except ClientError as e:
         logger.warn(e.response['Error']['Message'])
