@@ -21,12 +21,8 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
-        - dynamodb:Query
-        - dynamodb:Scan
-        - dynamodb:GetItem
-        - dynamodb:PutItem
-        - dynamodb:UpdateItem
-        - dynamodb:DeleteItem
+        - dynamodb:*
+        - s3:*
       Resource: "*"
 
 # Each function includes the files it needs
@@ -76,3 +72,9 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
+
+    # S3 image bucket
+    imagesBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: fg-images-bucket

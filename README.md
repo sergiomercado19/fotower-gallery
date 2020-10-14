@@ -58,10 +58,10 @@ pip install -r requirements.txt
 
 *NOTE: This section is not required to deploy this project, however, it's just here for completeness.*
 
-A template project can be created by simply executing the following command on the folder you want to set as the root of your serverless application:
+A template project can be created by simply executing the following command on the folder you want to set as the root of your serverless application. You can specify what template to use depending on what programming language you want to use, check out the full list of [available templates](https://www.serverless.com/framework/docs/providers/aws/cli-reference/create#available-templates).
 
 ```script
-serverless
+serverless create --template <template-name>
 ```
 
 > NOTE: The `serverless` and `sls` commands can be used interchangably.
@@ -86,8 +86,8 @@ Serverless takes care of creating API Gateway resources, and linking them to a c
 
 * [API Gateway](https://aws.amazon.com/api-gateway/): through a **lambda-proxy** integration (recommended by Serverless) the request processing and response formatting is conducted by the lambda function. This gives us direct control over the REST API. For more information, checkout the [API Gateway integration documentation](https://www.serverless.com/framework/docs/providers/aws/events/apigateway/).
 * [DynamoDB](https://aws.amazon.com/dynamodb/): is being used to store picture metadata, as well as user information. The table configuration is done as a *service* in the `serverless.yml` file.
-* [Cognito](https://aws.amazon.com/cognito/)
-* [S3](https://aws.amazon.com/s3/)
+* [Cognito](https://aws.amazon.com/cognito/): is a user management system that allows us to restrict certain endpoints to authenticated users.
+* [S3](https://aws.amazon.com/s3/): offers scalable storage in buckets, this will be used to store the *image* part of a *picture* object (i.e. the actual `.png` or `.jpg` file).
 
 ### Folder Structure
 
