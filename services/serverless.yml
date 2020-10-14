@@ -58,7 +58,6 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-
     picturesTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -78,3 +77,40 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: fg-images-bucket
+
+    # Cognito user pool
+    userPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+        UserPoolName: fg-user-pool
+        MfaConfiguration: OFF
+        UsernameAttributes:
+          - email
+        Policies:
+          PasswordPolicy:
+            MinimumLength: 6
+            RequireUppercase: True
+            RequireNumbers: True
+    userPoolClient:
+      Type: AWS::Cognito::UserPoolClient
+      Properties:
+        ClientName: fg-user-pool-client
+        UserPoolId:
+          Ref: userPool
+        ExplicitAuthFlows:
+          - ADMIN_NO_SRP_AUTH
+        GenerateSecret: false
+
+    # API Gateway authorizer
+    ApiGatewayAuthorizer:
+      DependsOn:
+        - ApiGatewayRestApi
+      Type: AWS::ApiGateway::Authorizer
+      Properties:
+        Name: cognito-authorizer
+        IdentitySource: method.request.header.Authorization
+        RestApiId:
+          Ref: ApiGatewayRestApi
+        Type: COGNITO_USER_POOLS
+        ProviderARNs:
+          - Fn::GetAtt: [userPool, Arn]

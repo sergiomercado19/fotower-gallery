@@ -23,6 +23,10 @@ delete-user:
         path: users/{username}
         method: delete
         cors: true
+        authorizer:
+          type: COGNITO_USER_POOLS
+          authorizerId:
+            Ref: ApiGatewayAuthorizer
 
 fetch-user:
   name: fg-fetch-user
@@ -49,3 +53,7 @@ update-user:
         path: users/{username}
         method: put
         cors: true
+        authorizer:
+          type: COGNITO_USER_POOLS
+          authorizerId:
+            Ref: ApiGatewayAuthorizer

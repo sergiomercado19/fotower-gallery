@@ -10,6 +10,10 @@ upload-picture:
         path: pictures
         method: post
         cors: true
+        authorizer:
+          type: COGNITO_USER_POOLS
+          authorizerId:
+            Ref: ApiGatewayAuthorizer
 
 remove-picture:
   name: fg-remove-picture
@@ -23,6 +27,10 @@ remove-picture:
         path: pictures/{id}
         method: delete
         cors: true
+        authorizer:
+          type: COGNITO_USER_POOLS
+          authorizerId:
+            Ref: ApiGatewayAuthorizer
 
 fetch-picture:
   name: fg-fetch-picture
@@ -49,3 +57,7 @@ modify-picture:
         path: pictures/{id}
         method: put
         cors: true
+        authorizer:
+          type: COGNITO_USER_POOLS
+          authorizerId:
+            Ref: ApiGatewayAuthorizer

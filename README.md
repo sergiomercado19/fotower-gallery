@@ -138,3 +138,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Thanks to [Alex DeBrie](https://www.serverless.com/author/alexdebrie) for a quick guide on how to [Build a Python REST API with Serverless, Lambda, and DynamoDB](https://www.serverless.com/blog/flask-python-rest-api-serverless-lambda-dynamodb).
 - Thanks to [Serverless Stack](https://serverless-stack.com/) for a guide on how to [organize serverless projects](https://serverless-stack.com/chapters/organizing-serverless-projects.html).
+- Thanks to [David García](https://medium.com/@Da_vidgf) for a blog post about [about using Cognito for user management and API Gateway integration](https://medium.com/@Da_vidgf/using-cognito-for-users-management-in-your-serverless-application-1695fec9e225).
