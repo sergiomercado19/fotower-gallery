@@ -1,12 +1,25 @@
+login:
+  name: fg-login
+  description: Login with credentials.
+  handler: apis/auth/login.lambda_handler
+  package:
+    include:
+      - apis/auth/login.py
+  events:
+    - http: 
+        path: auth/login
+        method: post
+        cors: true
+
 signup:
-    name: fg-signup
-    description: Create a new user.
-    handler: apis/auth/signup.lambda_handler
-    package:
-      include:
-        - apis/auth/signup.py
-    events:
-      - http: 
-          path: auth/signup
-          method: post
-          cors: true
+  name: fg-signup
+  description: Create a new user.
+  handler: apis/auth/signup.lambda_handler
+  package:
+    include:
+      - apis/auth/signup.py
+  events:
+    - http: 
+        path: auth/signup
+        method: post
+        cors: true
