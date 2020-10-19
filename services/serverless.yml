@@ -23,6 +23,7 @@ provider:
       Action:
         - dynamodb:*
         - s3:*
+        - cognito-idp:*
       Resource: "*"
 
 # Each function includes the files it needs
