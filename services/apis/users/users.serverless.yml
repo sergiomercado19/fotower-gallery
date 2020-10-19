@@ -1,16 +1,3 @@
-create-user:
-  name: fg-create-user
-  description: Create a new user.
-  handler: apis/users/create_user.lambda_handler
-  package:
-    include:
-      - apis/users/create_user.py
-  events:
-    - http: 
-        path: users
-        method: post
-        cors: true
-
 delete-user:
   name: fg-delete-user
   description: Remove a user, this operation is destructive.

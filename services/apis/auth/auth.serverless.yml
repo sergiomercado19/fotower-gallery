@@ -1,0 +1,12 @@
+signup:
+    name: fg-signup
+    description: Create a new user.
+    handler: apis/auth/signup.lambda_handler
+    package:
+      include:
+        - apis/auth/signup.py
+    events:
+      - http: 
+          path: auth/signup
+          method: post
+          cors: true

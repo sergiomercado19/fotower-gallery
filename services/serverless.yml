@@ -33,8 +33,9 @@ package:
     - requirements.txt
   individually: true
 
-# Link to 3 files containing endpoint-specific functions
+# Link to 4 files containing endpoint-specific functions
 functions:
+  - '${file(apis/auth/auth.serverless.yml)}'
   - '${file(apis/feed/feed.serverless.yml)}'
   - '${file(apis/pictures/pictures.serverless.yml)}'
   - '${file(apis/users/users.serverless.yml)}'
