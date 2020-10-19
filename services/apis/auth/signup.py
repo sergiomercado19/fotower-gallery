@@ -31,7 +31,7 @@ def lambda_handler(event, context):
     body = {}
 
     try:
-        # Create Cognito entry for this new user
+        # Part 1. Create Cognito entry for this new user
         logger.info('Registering user ({})'.format(new_user['email']))
         response = cognito.admin_create_user(
             UserPoolId='ap-southeast-2_JP64Xpy5m',
@@ -63,7 +63,7 @@ def lambda_handler(event, context):
         else:
             logger.info('Registered user ({})'.format(new_user['email']))
 
-        # Set password for new user
+        # Part 2. Set Cognito password for new user
         logger.info('Setting user password ({})'.format(new_user['email']))
         response = cognito.admin_set_user_password(
             UserPoolId='ap-southeast-2_JP64Xpy5m',
@@ -83,8 +83,7 @@ def lambda_handler(event, context):
         else:
             logger.info('Set user password ({})'.format(new_user['email']))
 
-
-        # Create db item
+        # Part 3. Create db item
         logger.info('Creating user ({})'.format(new_user['email']))
         response = users_table.put_item(Item=new_user)
 
@@ -99,7 +98,6 @@ def lambda_handler(event, context):
         logger.warn(e.response['Error']['Message'])
         status_code = e.response['ResponseMetadata']['HTTPStatusCode']
         body['errors'] = [ e.response['Error']['Message'] ]
-        
  
     return {
         'statusCode': status_code,
