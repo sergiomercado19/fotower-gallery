@@ -34,7 +34,7 @@ def lambda_handler(event, context):
         # Part 1. Create Cognito entry for this new user
         logger.info('Registering user ({})'.format(new_user['email']))
         response = cognito.admin_create_user(
-            UserPoolId='ap-southeast-2_JP64Xpy5m',
+            UserPoolId='ap-southeast-2_AeuT2xMHY',
             Username=new_user['email'],
             UserAttributes=[
                 {
@@ -54,7 +54,7 @@ def lambda_handler(event, context):
         
         if response['ResponseMetadata']['HTTPStatusCode'] != 200:
             logger.warn(response['Error']['Message'])
-            body['errors'] = [ response['Error']['Message'] ]
+            body['errors'] = [ '(Part 1)' + response['Error']['Message'] ]
             return {
                 'statusCode': response['ResponseMetadata']['HTTPStatusCode'],
                 'body': json.dumps(body)
@@ -66,7 +66,7 @@ def lambda_handler(event, context):
         # Part 2. Set Cognito password for new user
         logger.info('Setting user password ({})'.format(new_user['email']))
         response = cognito.admin_set_user_password(
-            UserPoolId='ap-southeast-2_JP64Xpy5m',
+            UserPoolId='ap-southeast-2_AeuT2xMHY',
             Username=new_user['email'],
             Password=payload['password'],
             Permanent=True
@@ -74,7 +74,7 @@ def lambda_handler(event, context):
         
         if response['ResponseMetadata']['HTTPStatusCode'] != 200:
             logger.warn(response['Error']['Message'])
-            body['errors'] = [ response['Error']['Message'] ]
+            body['errors'] = [ '(Part 2)' + response['Error']['Message'] ]
             return {
                 'statusCode': response['ResponseMetadata']['HTTPStatusCode'],
                 'body': json.dumps(body)
@@ -90,7 +90,7 @@ def lambda_handler(event, context):
         if response['ResponseMetadata']['HTTPStatusCode'] != 200:
             logger.warn(response['Error']['Message'])
             status_code = response['ResponseMetadata']['HTTPStatusCode']
-            body['errors'] = [ response['Error']['Message'] ]
+            body['errors'] = [ '(Part 3)' + response['Error']['Message'] ]
         else:
             logger.info('Created user ({})'.format(new_user['email']))
 

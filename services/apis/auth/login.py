@@ -32,7 +32,7 @@ def lambda_handler(event, context):
     try:
         logger.info('Logging in user ({})'.format(credentials['email']))
         response = cognito.admin_initiate_auth(
-            UserPoolId='ap-southeast-2_JP64Xpy5m',
+            UserPoolId='ap-southeast-2_AeuT2xMHY',
             ClientId='7jb1tguk4pfv2iio8d13jaitcq',
             AuthFlow='ADMIN_NO_SRP_AUTH',
             AuthParameters={
