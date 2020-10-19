@@ -52,10 +52,10 @@ resources:
       Properties:
         TableName: fg-users-table
         AttributeDefinitions:
-          - AttributeName: username
+          - AttributeName: email
             AttributeType: S
         KeySchema:
-          - AttributeName: username
+          - AttributeName: email
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
