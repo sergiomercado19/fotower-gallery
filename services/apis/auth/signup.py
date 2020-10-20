@@ -1,5 +1,4 @@
 import json
-import uuid
 import boto3
 import logging
 from botocore.exceptions import ClientError

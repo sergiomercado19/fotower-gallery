@@ -1,5 +1,4 @@
 import json
-import uuid
 import boto3
 import logging
 from botocore.exceptions import ClientError
@@ -10,8 +9,6 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
 # Connect to AWS services
-dynamodb = boto3.resource('dynamodb')
-users_table = dynamodb.Table('fg-users-table')
 cognito = boto3.client('cognito-idp')
 
 def lambda_handler(event, context):

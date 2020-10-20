@@ -3,7 +3,7 @@ import time
 import boto3
 import logging
 from botocore.exceptions import ClientError
-from boto3.dynamodb.conditions import Key, Attr
+from boto3.dynamodb.conditions import Key
 
 
 # Set up our logger
