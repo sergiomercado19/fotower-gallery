@@ -16,6 +16,8 @@ pictures_table = dynamodb.Table('fg-pictures-table')
 def lambda_handler(event, context):
     # Request parsing
     payload = json.loads(event['body'])
+    # Get username from authorizer
+    username = event['requestContext']['authorizer']['username']
 
     # Request processing
     pic_id = event['pathParameters']['id']

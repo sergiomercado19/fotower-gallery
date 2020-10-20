@@ -15,10 +15,10 @@ users_table = dynamodb.Table('fg-users-table')
 cognito = boto3.client('cognito-idp')
 
 def lambda_handler(event, context):
-   # Request parsing
+    # Request parsing
     payload = json.loads(event['body'])
 
-   # Unpackage data
+    # Unpackage data
     credentials = {
         'username': payload['username'],
         'password': payload['password']

@@ -15,7 +15,8 @@ users_table = dynamodb.Table('fg-users-table')
 def lambda_handler(event, context):
     # Request parsing
     payload = json.loads(event['body'])
-    username = event['pathParameters']['username']
+    # Get username from authorizer
+    username = event['requestContext']['authorizer']['username']
 
     # Request processing
     email = payload['email'],

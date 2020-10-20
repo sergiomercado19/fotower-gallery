@@ -13,8 +13,8 @@ dynamodb = boto3.resource('dynamodb')
 users_table = dynamodb.Table('fg-users-table')
 
 def lambda_handler(event, context):
-    # Request parsing
-    username = event['pathParameters']['username']
+    # Get username from authorizer
+    username = event['requestContext']['authorizer']['username']
 
     # Response formatting
     status_code = 204

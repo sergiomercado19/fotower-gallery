@@ -17,6 +17,8 @@ pictures_table = dynamodb.Table('fg-pictures-table')
 def lambda_handler(event, context):
     # Request parsing
     payload = json.loads(event['body'])
+    # Get username from authorizer
+    username = event['requestContext']['authorizer']['username']
 
     # Package data
     new_pic = {
@@ -24,7 +26,8 @@ def lambda_handler(event, context):
         'modifiedDate': str(int(time.time())),
         'description': payload['description'],
         'location': payload['location'],
-        'image': payload['image']
+        'image': payload['image'],
+        'owner': username
     }
 
     # Response formatting
