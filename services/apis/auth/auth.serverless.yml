@@ -1,3 +1,11 @@
+authorizer:
+  name: fg-authorizer
+  description: Middleware to handle authentication.
+  handler: apis/auth/authorizer.lambda_handler
+  package:
+    include:
+      - apis/auth/authorizer.py
+
 login:
   name: fg-login
   description: Login with credentials.
