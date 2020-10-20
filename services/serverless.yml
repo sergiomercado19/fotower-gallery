@@ -52,10 +52,10 @@ resources:
       Properties:
         TableName: fg-users-table
         AttributeDefinitions:
-          - AttributeName: email
+          - AttributeName: username
             AttributeType: S
         KeySchema:
-          - AttributeName: email
+          - AttributeName: username
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
@@ -86,8 +86,6 @@ resources:
       Properties:
         UserPoolName: fg-user-pool
         MfaConfiguration: OFF
-        UsernameAttributes:
-          - email
         Policies:
           PasswordPolicy:
             MinimumLength: 6

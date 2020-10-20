@@ -20,7 +20,7 @@ def lambda_handler(event, context):
 
    # Unpackage data
     credentials = {
-        'email': payload['email'],
+        'username': payload['username'],
         'password': payload['password']
     }
 
@@ -30,13 +30,13 @@ def lambda_handler(event, context):
     
     # Authenticate credentials
     try:
-        logger.info('Logging in user ({})'.format(credentials['email']))
+        logger.info('Logging in user ({})'.format(credentials['username']))
         response = cognito.admin_initiate_auth(
-            UserPoolId='ap-southeast-2_AeuT2xMHY',
-            ClientId='7jb1tguk4pfv2iio8d13jaitcq',
+            UserPoolId='ap-southeast-2_olj1yh7QQ',
+            ClientId='goitvv8flm10r9u185ol5mpqu',
             AuthFlow='ADMIN_NO_SRP_AUTH',
             AuthParameters={
-                'USERNAME': credentials['email'],
+                'USERNAME': credentials['username'],
                 'PASSWORD': credentials['password']
             }
         )
@@ -46,7 +46,7 @@ def lambda_handler(event, context):
             status_code = response['ResponseMetadata']['HTTPStatusCode']
             body['errors'] = [ response['Error']['Message'] ]
         else:
-            logger.info('Logged in user ({})'.format(credentials['email']))
+            logger.info('Logged in user ({})'.format(credentials['username']))
             body = response['AuthenticationResult']
 
     except ClientError as e:
