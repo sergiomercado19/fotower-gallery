@@ -25,7 +25,12 @@ def lambda_handler(event, context):
     # Delete db item
     try:
         logger.info('Deleting picture ({})'.format(pic_id))
-        response = pictures_table.delete_item(Key={'picId': pic_id})
+        response = pictures_table.delete_item(
+            Key={
+                'picId': pic_id,
+                'owner': username
+            }
+        )
 
         if response['ResponseMetadata']['HTTPStatusCode'] != 200:
             logger.warn(response['Error']['Message'])

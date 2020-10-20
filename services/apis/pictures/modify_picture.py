@@ -3,7 +3,7 @@ import time
 import boto3
 import logging
 from botocore.exceptions import ClientError
-from boto3.dynamodb.conditions import Key
+from boto3.dynamodb.conditions import Key, Attr
 
 
 # Set up our logger
@@ -34,7 +34,8 @@ def lambda_handler(event, context):
         logger.info('Updating picture ({})'.format(pic_id))
         response = pictures_table.update_item(
             Key={
-                'picId': pic_id
+                'picId': pic_id,
+                'owner': username
             },
             UpdateExpression="set modifiedDate=:md, description=:d, location=:l",
             ExpressionAttributeValues={
