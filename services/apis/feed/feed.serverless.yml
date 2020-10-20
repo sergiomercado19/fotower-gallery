@@ -9,11 +9,6 @@ fetch-feed:
     - http:
         path: feed
         method: get
-        cors: true
-        authorizer:
-          type: COGNITO_USER_POOLS
-          authorizerId:
-            Ref: ApiGatewayAuthorizer
 
 fetch-user-wall:
   name: fg-fetch-user-wall

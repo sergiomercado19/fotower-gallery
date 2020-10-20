@@ -7,13 +7,10 @@ delete-user:
       - apis/users/delete_user.py
   events:
     - http: 
-        path: users/{username}
+        path: users
         method: delete
         cors: true
-        authorizer:
-          type: COGNITO_USER_POOLS
-          authorizerId:
-            Ref: ApiGatewayAuthorizer
+        authorizer: authorizer
 
 fetch-user:
   name: fg-fetch-user
@@ -37,10 +34,7 @@ update-user:
       - apis/users/update_user.py
   events:
     - http: 
-        path: users/{username}
+        path: users
         method: put
         cors: true
-        authorizer:
-          type: COGNITO_USER_POOLS
-          authorizerId:
-            Ref: ApiGatewayAuthorizer
+        authorizer: authorizer
