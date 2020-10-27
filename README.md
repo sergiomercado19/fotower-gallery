@@ -9,6 +9,7 @@ This project is part of a learning experience into [AWS infrastructure](https://
 - [Getting Started](#getting-started)
 - [Backend-as-a-Service: AWS/Serverless](#backend-as-a-service-aws-/-serverless)
 - [Deployment](#deployment)
+- [Upcoming Features](#upcoming-features)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
