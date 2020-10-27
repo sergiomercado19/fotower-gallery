@@ -86,8 +86,8 @@ Serverless takes care of creating API Gateway resources, and linking them to a c
 
 * [API Gateway](https://aws.amazon.com/api-gateway/): through a **lambda-proxy** integration (recommended by Serverless) the request processing and response formatting is conducted by the lambda function. This gives us direct control over the REST API. For more information, checkout the [API Gateway integration documentation](https://www.serverless.com/framework/docs/providers/aws/events/apigateway/).
 * [DynamoDB](https://aws.amazon.com/dynamodb/): is being used to store picture metadata, as well as user information. The table configuration is done as a *service* in the `serverless.yml` file.
-* [Cognito](https://aws.amazon.com/cognito/): is a user management system that allows us to restrict certain endpoints to authenticated users.
-* [S3](https://aws.amazon.com/s3/): offers scalable storage in buckets, this will be used to store the *image* part of a *picture* object (i.e. the actual `.png` or `.jpg` file).
+* [Cognito](https://aws.amazon.com/cognito/): is a user management system that allows us to restrict certain endpoints to authenticated users. [`authorizer.py`](services/apis/auth/authorizer.py) is the middleware that verifies the validity of Authorization tokens found the headers of requests. This function sits in front of all the functions that require a token.
+* [S3](https://aws.amazon.com/s3/): the setup of the picture bucket can be found in `serverless.yml`; however, since the uploading of pictures is very frontend dependant this feature has not been implemented. Instead, pictures will be stored as *base64 strings* in DynamoDB.
 
 ### Folder Structure
 
@@ -99,6 +99,11 @@ Looking in more depth at **apis/**:
 
 ```
 apis
+├── [auth]
+│   ├── (auth.serverless.yml)
+│   ├── authorizer.py
+│   ├── login.py
+│   └── signup.py
 ├── [feed]
 │   ├── (feed.serverless.yml)
 │   ├── fetch_feed.py
@@ -110,7 +115,6 @@ apis
 │   ├── remove_picture.py
 │   └── upload_picture.py
 └── [users]
-    ├── create_user.py
     ├── delete_user.py
     ├── fetch_user.py
     ├── update_user.py
