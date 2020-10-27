@@ -134,6 +134,12 @@ sls deploy
 
 > NOTE: The `serverless` and `sls` commands can be used interchangably.
 
+## Upcoming Features
+
+- `serverless.yml` resource name abstraction.
+- Validation and error unification.
+- API documentation using Swagger.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
